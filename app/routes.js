@@ -9,14 +9,58 @@ module.exports = function(app, passport, db) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('messages').find().toArray((err, result) => {
+        db.collection('attractions').find().toArray((err, result) => {
           if (err) return console.log(err)
           res.render('profile.ejs', {
             user : req.user,
-            messages: result
+            attractions: result
           })
         })
+        //
     });
+    app.post('/chooseCountry',isLoggedIn, function(req, res) {
+      console.log("body",req.body)
+       const countryCount = {Congo:0, Senegal:0, Nigeria:0}
+       const values = Object.values(req.body)
+       let selectedCountry = ""
+       for (let i=0; i< values.length; i++){
+        console.log(values[i])
+        if (values[i] == "Congo"){
+          countryCount.Congo += 1
+        }else if(values[i] == "Nigeria"){
+          countryCount.Nigeria += 1
+        }else if(values[i] == "Senegal"){
+          countryCount.Senegal += 1
+
+       }
+
+       console.log("countryCount", countryCount);
+      }
+      if (countryCount.Congo >= countryCount.Nigeria && countryCount.Congo >= countryCount.Senegal){
+        selectedCountry = "Congo"
+      } else if ( countryCount.Nigeria > countryCount.Congo && countryCount.Nigeria >= countryCount.Senegal) {
+        selectedCountry = "Nigeria"
+      } else{
+        selectedCountry = "Senegal"
+      }
+       console.log("values", values);
+    //   console.log(req.body.reduce(function(sums,entry){
+    //     sums[entry.city] = (sums[entry.city] || 0) + 1;
+    //     return sums;
+    //  },{}))
+
+    db.collection('attractions').find().toArray((err, result) => {
+      if (err) return console.log(err)
+      res.render('chooseCountry.ejs', {recommendedCountry:selectedCountry, attractions:result});
+      // res.render('profile.ejs', {
+      //   user : req.user, 
+      //   attractions: result
+      // })
+    })
+    //
+     
+      
+  });
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
@@ -33,6 +77,17 @@ module.exports = function(app, passport, db) {
         res.redirect('/profile')
       })
     })
+    app.get('/attractions', function(req, res) {
+      db.collection('attractions').find().toArray((err, result) => {
+        if (err) return console.log(err)
+        res.send(result)
+        // res.render('profile.ejs', {
+        //   user : req.user,
+        //   attractions: result
+        // })
+      })
+      //
+  });
 //
     app.put('/messages', (req, res) => {
       db.collection('messages')

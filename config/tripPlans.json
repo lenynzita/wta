@@ -1,0 +1,9 @@
+ 
+[ 
+    {
+        "country":"Congo","type":"restaurant","name": "Jiji", "location":{"lat":"45","lon":"50"}, "time":"3h", "town":"Kinshasa"
+    },
+    {
+        "type":"attraction","name": "MusuemdeSlave", "location":{"lat":"40","lon":"50"}
+    }
+]

@@ -5,3 +5,8 @@ body{
 img{
   height: 200px;
 }
+.frontPage{
+  background-color: rgb(247, 242, 242);
+  text-align: center!important;
+}
+

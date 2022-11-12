@@ -4,39 +4,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mapStyle.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+     integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+     crossorigin=""/>
     <title>Document</title>
 </head>
 
 <body>
-    
+  <div id="map"></div>
     <h1>Welcome to Africa!</h1>
+
+    <ul class="attractions">
+      <% for(var i=0; i<attractions.length; i++) {%>
+        <li class="attractions">
+          <span><%= attractions[i].name %></span>
+          <span><%= attractions[i].type %></span>
+          <!-- <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+          <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+          <span><i class="fa fa-trash" aria-hidden="true"></i></span> -->
+        </li>
+      <% } %>
+      </ul>
+
     <!-- list of culture, Food, event, activities, shopping -->
-    <section>
+    <!-- <section>
         <h3>Culture</h3>
             <select id="element">
             <option value="1">Earth</option>
             <option value="2">Fire</option>
             <option value="3">Water</option>
+          </select> -->
+        <h3>What Kind of Food do you love???</h3>
+        <form action="/chooseCountry" method="post">
+          <select name="food" id="wickedness">
+            <option value="Nigeria">Spicy</option>
+            <option value="Congo">Mild Food </option>
+            <option value="Senegal">Sea Food </option> 
+            <option value="Nigeria">Fish</option>
+            <option value="Congo">Meat</option>
+            <option value="Senegal">Vegetable</option>
+            <option value="Nigeria">Fruit</option>  
+            <option value=""></option>
+            <option value=""></option>         
+            <!-- <option value="1">Jollof Rice</option>
+            <option value="2">Iyan</option>
+            <option value="3">Ogbono Soup</option>
+            <option value="3">Liboke</option>
+            <option value="3">Pondu</option>
+            <option value="3">Ndakala</option>
+            <option value="3">Thieboudienne</option>
+            <option value="3">Soup Kandia</option>
+            <option value="3">Yassa Guinar</option> -->
           </select>
-        <h3>Food</h3>
-          <select id="wickedness"> 
-            <option value="1">Anger</option>
-            <option value="2">Alcohol</option>
-            <option value="3">Lightning</option>
-          </select>
-        <h3>Event</h3>
-          <select id="color">
-            <option value="1">Green</option>
+        
+          <h3>What Do you Do for Fun???</h3>
+          <select name="activities" id="color">
+            <option value="Congo"> Hiking</option>
+            <option value="Senegal">Beach</option>
+            <option value="Nigeria">Bars</option>
+            <option value="Congo">Wild Life</option>
+            <option value="Senegal">Zipline</option>
+            <option value="Nigeria">Swin With Animals</option>
+            <option value=""></option>
+            <!-- <option value="1"></option>
             <option value="2">Red</option>
             <option value="3">Blue</option>
+            <option value="1">Green</option>
+            <option value="2">Red</option>
+            <option value="3">Blue</option> -->
           </select>
-        <h3>Acticities</h3>
-          <select id="power"> Power
-            <option value="1">Strong</option>
-            <option value="2">Fast</option>
-            <option value="3">fly</option>
-          </select>
-    
+          <h3>What musuem???</h3>
+          <select name="musuems" id="color">
+            <option value="Congo">Zoologic Musuem</option>
+            <option value="Senegal">Art Gallery </option>
+            <option value="Nigeria">History Musuem</option>
+            </select>
+          <button type="submit">Find Your Country</button>
+        </form>
+        <h3></h3>
+          
+
           
 </body>
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+crossorigin=""></script>
+<script src="map.js"></script>
 </html>
